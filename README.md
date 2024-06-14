@@ -1,16 +1,11 @@
-# Resume-Backend
-pip install flask
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-resume_builder/
-   app.py
-   models.py
-   routes.py
-   forms.py
-   templates/
-      index.html
-   static/
-      css/
-         styles.css
-  config.py
-  requirements.txt
-  __init__.py
+app = Flask(__name__)
+app.config.from_object('config')
+
+db = SQLAlchemy(app)
+
+from resume_builder import routes, models
+
+db.create_all()
